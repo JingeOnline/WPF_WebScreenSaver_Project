@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="Web_main.css" />
+</head>
+
+<body>
+    <!-- Swiper -->
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" id="s1">Slide 1</div>
+            <div class="swiper-slide" id="s2">Slide 2</div>
+            <div class="swiper-slide" id="s3">Slide 3</div>
+            <div class="swiper-slide">
+                <div class="page">
+                    <iframe id="Frame_ClockRound1"
+                            src="https://free.timeanddate.com/clock/i8xa9g0h/n152/szw700/szh700/hoc444/hbw4/hfceee/cf100/hgr0/fdi76/mqc444/mql10/mqw4/mqd98/mhc444/mhl10/mhw4/mhd98/mmc444/mml10/mmw1/mmd98/hhl50/hhw6"
+                            frameborder="0" width="700" height="700">
+                    </iframe>
+                    <iframe id="Frame_ClockRound2"
+                            src="https://free.timeanddate.com/clock/i8xa9g0h/n152/szw700/szh700/hoc444/hbw4/hfceee/cf100/hgr0/fdi76/mqc444/mql10/mqw4/mqd98/mhc444/mhl10/mhw4/mhd98/mmc444/mml10/mmw1/mmd98/hhl50/hhw6"
+                            frameborder="0" width="700" height="700">
+                    </iframe>
+                    <h1>test</h1>
+                </div>
+
+            </div>
+        </div>
+        <div class="swiper-button-next setting-hide"></div>
+        <div class="swiper-button-prev setting-hide"></div>
+        <div class="swiper-pagination setting-hide"></div>
+    </div>
+</body>
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".swiper", {
+        direction: 'vertical',
+        slidesPerView: 1,
+        autoplay: {
+            delay: 5000,
+            pauseOnMouseEnter: true,
+        },
+        loop: true,
+        // If we need pagination
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        // Navigation arrows
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>
+
+</html>
