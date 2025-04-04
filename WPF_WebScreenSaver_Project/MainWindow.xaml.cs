@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SharedLibrary.Helpers;
+using SharedLibrary.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -26,8 +28,16 @@ namespace WPF_WebScreenSaver_Project
         [DllImport("User32.dll")]
         private static extern bool SetCursorPos(int X, int Y);
 
+        private string aud_rate;
+        private string usd_rate;
+        private string aud_updateTime;
+        private string usd_updateTime;
+
         private string js1 = "var list=document.querySelectorAll('.setting-hide');list.forEach(x=>x.style.display='none');";
-        private string js2 = "";
+        private string updateBocAudRate = "document.querySelector('#div_boc_aud_rate').innerHTML=";
+        private string updateBocUsdRate = "document.querySelector('#div_boc_usd_rate').innerHTML=";
+        private string updateBocAudTime = "document.querySelector('#div_boc_aud_rate_time').innerHTML=";
+        private string updateBocUsdTime = "document.querySelector('#div_boc_usd_rate_time').innerHTML=";
 
         public MainWindow()
         {
@@ -82,6 +92,29 @@ namespace WPF_WebScreenSaver_Project
                     #endregion
                 }
             };
+
+            await UpdateBocRate();
+        }
+
+        public async Task UpdateBocRate()
+        {
+            while (true)
+            {
+                try
+                {
+                    List<ExchangeDailyModel> list = await BocHelper.GetExchangeDailyModelsFromBocHomePage();
+                    aud_rate = list.First(x => x.name == "AUD").xhmcj;
+                    usd_rate = list.First(x => x.name == "USD").xhmcj;
+                    aud_updateTime = "'" + "发布时间（中国）: " + list.First(x => x.name == "AUD").publishTime + "'";
+                    usd_updateTime = "'" + "发布时间（中国）: " + list.First(x => x.name == "USD").publishTime + "'";
+                    await WebView.ExecuteScriptAsync(updateBocAudRate + aud_rate);
+                    await WebView.ExecuteScriptAsync(updateBocUsdRate + usd_rate);
+                    await WebView.ExecuteScriptAsync(updateBocAudTime + aud_updateTime);
+                    await WebView.ExecuteScriptAsync(updateBocUsdTime + usd_updateTime);
+                    await Task.Delay(60 * 1000);
+                }
+                catch (Exception ex) { }
+            }
         }
 
         #region 检测鼠标移动，鼠标被按下，键盘被按下

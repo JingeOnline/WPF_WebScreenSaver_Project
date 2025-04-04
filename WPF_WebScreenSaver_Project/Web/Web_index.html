@@ -35,7 +35,7 @@
                             time_is_widget.init({ Canberra_z60b: { template: "TIME<br>DATE<br>SUN", date_format: "year年mnum月dnum日，dayname，第week周", sun_format: "日出: srhour:srminute 日落: sshour:ssminute<br>昼长: dlhours时 dlminutes分", coords: "-35.2834600,149.1280700" } });
                         </script>
                         <!-- <script src="https://cdn.logwork.com/widget/text.js"></script>
-                        <a href="https://logwork.com/current-time-in-canberra-australia-australian-capital-territory" class="clock-widget-text" data-timezone="Australia/Sydney" data-language="en" data-textcolor="#878787" data-background="#000000" data-digitscolor="#ffffff">Canberra, Australia, Australian Capital Territory</a> -->
+                <a href="https://logwork.com/current-time-in-canberra-australia-australian-capital-territory" class="clock-widget-text" data-timezone="Australia/Sydney" data-language="en" data-textcolor="#878787" data-background="#000000" data-digitscolor="#ffffff">Canberra, Australia, Australian Capital Territory</a> -->
                     </div>
                 </div>
             </div>
@@ -43,12 +43,12 @@
                 <div id="boc_aud_container">
                     <div id="div_boc_aud">【澳元】中国银行现汇卖出价格</div>
                     <div id="div_boc_aud_rate">4.22</div>
-                    <div id="div_boc_aud_rate_time">更新时间：2025-02-22 9:33:33</div>
+                    <div id="div_boc_aud_rate_time">发布时间（中国）：2025-02-22 9:33:33</div>
                 </div>
                 <div id="boc_usd_container">
                     <div id="div_boc_usd">【美元】中国银行现汇卖出价格</div>
                     <div id="div_boc_usd_rate">4.22</div>
-                    <div id="div_boc_usd_rate_time">更新时间：2025-02-22 9:33:33</div>
+                    <div id="div_boc_usd_rate_time">发布时间（中国）：2025-02-22 9:33:33</div>
                 </div>
                 <div id="Frame_USDCNY">
                     <!-- TradingView Widget BEGIN -->
@@ -158,11 +158,12 @@
                     <!-- TradingView Widget END -->
                 </div>
             </div>
-            <div class="swiper-slide" id="s3">Slide 3</div>
-            <div class="swiper-slide">
-
-
-            </div>
+            <div class="swiper-slide" id="s3" style="background-color:palevioletred">Slide 3</div>
+            <div class="swiper-slide" style="background-color:cadetblue">  </div>
+            <div class="swiper-slide" id="s3" style="background-color:cornflowerblue">Slide 3</div>
+            <div class="swiper-slide" style="background-color:gold">  </div>
+            <div class="swiper-slide" id="s3" style="background-color:floralwhite">Slide 3</div>
+            <div class="swiper-slide" style="background-color:fuchsia">  </div>
         </div>
         <div class="swiper-button-next setting-hide"></div>
         <div class="swiper-button-prev setting-hide"></div>
@@ -175,13 +176,54 @@
 <!-- Initialize Swiper -->
 <script>
     var swiper = new Swiper(".swiper", {
-        direction: 'vertical',
+        direction: 'horizontal',
+        speed: 2000,
+        effect: "fade",
         slidesPerView: 1,
-        //autoplay: {
-        //    delay: 5000,
-        //    pauseOnMouseEnter: true,
+        keyboard: {
+            enabled: true,
+        },
+        //pagination: {
+        //    el: ".swiper-pagination",
+        //    clickable: true,
+        //    renderBullet: function (index, className) {
+        //        return '<span class="' + className + '">' + (index + 1) + "</span>";
+        //    },
         //},
-        loop: true,
+        //effect: "creative",
+        //creativeEffect: {
+        //    prev: {
+        //        shadow: true,
+        //        origin: "left center",
+        //        translate: ["-5%", 0, -200],
+        //        rotate: [0, 100, 0],
+        //    },
+        //    next: {
+        //        origin: "right center",
+        //        translate: ["5%", 0, -200],
+        //        rotate: [0, -100, 0],
+        //    },
+        //},
+        //creativeEffect: {
+        //    prev: {
+        //        shadow: true,
+        //        translate: [0, 0, -800],
+        //        rotate: [180, 0, 0],
+        //    },
+        //    next: {
+        //        shadow: true,
+        //        translate: [0, 0, -800],
+        //        rotate: [-180, 0, 0],
+        //    },
+        //},
+        //slidesPerView: 'auto',
+        //slidesPerGroup: 1,
+        autoplay: {
+            delay: 3000,
+            pauseOnMouseEnter: true,
+            //reverseDirection: true,
+        },
+        //loop: true,
         // If we need pagination
         pagination: {
             el: ".swiper-pagination",
