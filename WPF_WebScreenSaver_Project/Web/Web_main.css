@@ -48,7 +48,7 @@ h1{
 }
 
 #s1 {
-    background-color: cornflowerblue;
+    background-color: transparent;
 }
 #s2{
   background: salmon;
@@ -59,13 +59,31 @@ h1{
 .page{
     overflow: hidden;
 }
-#Frame_ClockRound1{
+#Frame_ClockRound{
     position: absolute;
-    left: 5%;
-    bottom: 5%;
+    zoom:0.7;
+    left: 80px;
+    top: 80px;
 }
-#Frame_ClockRound2{
+#Frame_Weather5Day {
     position: absolute;
-    right: 5%;
-    bottom: 5%;
+    zoom: 1.1;
+    right: 40px;
+    top: 80px;
+}
+#Div_ClockDate {
+    position: absolute;
+    display: block;
+    zoom:0.8;
+    left: 90px;
+    top: 700px;
+    color: white;
+    width: 600px;
+    height: 500px;
+    text-align:center;
+    vertical-align:bottom;
+}
+#time_is_link {
+    color: white;
+    text-decoration: none;
 }

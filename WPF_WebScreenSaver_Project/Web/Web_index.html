@@ -14,21 +14,36 @@
     <!-- Swiper -->
     <div class="swiper">
         <div class="swiper-wrapper">
-            <div class="swiper-slide" id="s1">Slide 1</div>
+            <div class="swiper-slide" id="s1">
+                <div class="page">
+                    <iframe id="Frame_ClockRound"
+                            src="https://free.timeanddate.com/clock/i8xa9g0h/n152/szw700/szh700/hoc444/hbw4/hfceee/cf100/hgr0/fdi76/mqc444/mql10/mqw4/mqd98/mhc444/mhl10/mhw4/mhd98/mmc444/mml10/mmw1/mmd98/hhl50/hhw6"
+                            frameborder="0" width="700" height="700">
+                    </iframe>
+                    <iframe id="Frame_Weather5Day"
+                            src="https://www.meteoblue.com/en/weather/widget/three/ngunnawal_australia_8349187?geoloc=fixed&nocurrent=0&noforecast=0&days=5&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&layout=dark"
+                            frameborder="0" scrolling="NO" allowtransparency="true"
+                            sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox"
+                            style="width: 575px; height: 609px">
+                    </iframe>
+                    <div id="Div_ClockDate">
+                        <a href="https://time.is/Canberra" id="time_is_link" rel="nofollow"
+                           style="font-size:36px">堪培拉时间:</a>
+                        <!--<h2 style="font-size:36px">堪培拉时间:</h2>-->
+                        <span id="Canberra_z60b" style="font-size:36px"></span>
+                        <script src="widgettimeis.js"></script>
+                        <script>
+                            time_is_widget.init({ Canberra_z60b: { template: "TIME<br>DATE<br>SUN", time_format: "12hours:minutesAMPM", date_format: "year年mnum月dnum日dayname，第week周", sun_format: "日出: srhour:srminute 日落: sshour:ssminute<br>昼长: dlhours时 dlminutes分", coords: "-35.2834600,149.1280700" } });
+                        </script>
+                        <!-- <script src="https://cdn.logwork.com/widget/text.js"></script>
+        <a href="https://logwork.com/current-time-in-canberra-australia-australian-capital-territory" class="clock-widget-text" data-timezone="Australia/Sydney" data-language="en" data-textcolor="#878787" data-background="#000000" data-digitscolor="#ffffff">Canberra, Australia, Australian Capital Territory</a> -->
+                    </div>
+                </div>
+            </div>
             <div class="swiper-slide" id="s2">Slide 2</div>
             <div class="swiper-slide" id="s3">Slide 3</div>
             <div class="swiper-slide">
-                <div class="page">
-                    <iframe id="Frame_ClockRound1"
-                            src="https://free.timeanddate.com/clock/i8xa9g0h/n152/szw700/szh700/hoc444/hbw4/hfceee/cf100/hgr0/fdi76/mqc444/mql10/mqw4/mqd98/mhc444/mhl10/mhw4/mhd98/mmc444/mml10/mmw1/mmd98/hhl50/hhw6"
-                            frameborder="0" width="700" height="700">
-                    </iframe>
-                    <iframe id="Frame_ClockRound2"
-                            src="https://free.timeanddate.com/clock/i8xa9g0h/n152/szw700/szh700/hoc444/hbw4/hfceee/cf100/hgr0/fdi76/mqc444/mql10/mqw4/mqd98/mhc444/mhl10/mhw4/mhd98/mmc444/mml10/mmw1/mmd98/hhl50/hhw6"
-                            frameborder="0" width="700" height="700">
-                    </iframe>
-                    <h1>test</h1>
-                </div>
+
 
             </div>
         </div>
@@ -45,10 +60,10 @@
     var swiper = new Swiper(".swiper", {
         direction: 'vertical',
         slidesPerView: 1,
-        autoplay: {
-            delay: 5000,
-            pauseOnMouseEnter: true,
-        },
+        //autoplay: {
+        //    delay: 5000,
+        //    pauseOnMouseEnter: true,
+        //},
         loop: true,
         // If we need pagination
         pagination: {
