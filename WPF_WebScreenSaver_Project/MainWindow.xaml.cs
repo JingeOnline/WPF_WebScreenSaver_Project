@@ -26,7 +26,7 @@ namespace WPF_WebScreenSaver_Project
         [DllImport("User32.dll")]
         private static extern bool SetCursorPos(int X, int Y);
 
-        private string js1 = "var list=document.querySelectorAll('.setting-hide');list.forEach(x=>x.style.display='block');";
+        private string js1 = "var list=document.querySelectorAll('.setting-hide');list.forEach(x=>x.style.display='none');";
         private string js2 = "";
 
         public MainWindow()
@@ -65,7 +65,7 @@ namespace WPF_WebScreenSaver_Project
             {
                 if (e.IsSuccess)
                 {
-                    if (App.IsSettingMode)
+                    if (!App.IsSettingMode)
                     {
                         await ((Microsoft.Web.WebView2.Wpf.WebView2)sender).ExecuteScriptAsync(js1);
                     }

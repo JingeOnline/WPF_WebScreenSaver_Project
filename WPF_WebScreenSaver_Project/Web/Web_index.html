@@ -35,11 +35,129 @@
                             time_is_widget.init({ Canberra_z60b: { template: "TIME<br>DATE<br>SUN", date_format: "year年mnum月dnum日，dayname，第week周", sun_format: "日出: srhour:srminute 日落: sshour:ssminute<br>昼长: dlhours时 dlminutes分", coords: "-35.2834600,149.1280700" } });
                         </script>
                         <!-- <script src="https://cdn.logwork.com/widget/text.js"></script>
-        <a href="https://logwork.com/current-time-in-canberra-australia-australian-capital-territory" class="clock-widget-text" data-timezone="Australia/Sydney" data-language="en" data-textcolor="#878787" data-background="#000000" data-digitscolor="#ffffff">Canberra, Australia, Australian Capital Territory</a> -->
+                        <a href="https://logwork.com/current-time-in-canberra-australia-australian-capital-territory" class="clock-widget-text" data-timezone="Australia/Sydney" data-language="en" data-textcolor="#878787" data-background="#000000" data-digitscolor="#ffffff">Canberra, Australia, Australian Capital Territory</a> -->
                     </div>
                 </div>
             </div>
-            <div class="swiper-slide" id="s2">Slide 2</div>
+            <div class="swiper-slide" id="s2">
+                <div id="boc_aud_container">
+                    <div id="div_boc_aud">【澳元】中国银行现汇卖出价格</div>
+                    <div id="div_boc_aud_rate">4.22</div>
+                    <div id="div_boc_aud_rate_time">更新时间：2025-02-22 9:33:33</div>
+                </div>
+                <div id="boc_usd_container">
+                    <div id="div_boc_usd">【美元】中国银行现汇卖出价格</div>
+                    <div id="div_boc_usd_rate">4.22</div>
+                    <div id="div_boc_usd_rate_time">更新时间：2025-02-22 9:33:33</div>
+                </div>
+                <div id="Frame_USDCNY">
+                    <!-- TradingView Widget BEGIN -->
+                    <div class="tradingview-widget-container" id="div_USDCNY">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <!--<div class="tradingview-widget-copyright"><a href="https://cn.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">在TradingView上跟踪所有市场</span></a></div>-->
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+                          {
+                          "symbols": [
+                            [
+                              "FX_IDC:USDCNY|12M"
+                            ]
+                          ],
+                          "chartOnly": false,
+                          "width": "100%",
+                          "height": "100%",
+                          "locale": "zh_CN",
+                          "colorTheme": "dark",
+                          "autosize": true,
+                          "showVolume": false,
+                          "showMA": false,
+                          "hideDateRanges": false,
+                          "hideMarketStatus": false,
+                          "hideSymbolLogo": false,
+                          "scalePosition": "right",
+                          "scaleMode": "Normal",
+                          "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+                          "fontSize": "16",
+                          "noTimeScale": false,
+                          "valuesTracking": "1",
+                          "changeMode": "price-and-percent",
+                          "chartType": "area",
+                          "maLineColor": "#2962FF",
+                          "maLineWidth": 1,
+                          "maLength": 9,
+                          "headerFontSize": "medium",
+                          "backgroundColor": "rgba(15, 15, 15, 0)",
+                          "lineWidth": 2,
+                          "lineType": 0,
+                          "dateRanges": [
+                            "1d|1",
+                            "1m|30",
+                            "3m|60",
+                            "12m|1D",
+                            "60m|1W",
+                            "all|1M"
+                          ],
+                          "lineColor": "rgba(255, 152, 0, 1)",
+                          "topColor": "rgba(255, 152, 0, 0.6)",
+                          "bottomColor": "rgba(99, 99, 99, 0)"
+                        }
+                        </script>
+                    </div>
+                    <!-- TradingView Widget END -->
+                </div>
+                <div id="Frame_AUDCNY">
+                    <!-- TradingView Widget BEGIN -->
+                    <div class="tradingview-widget-container">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <!--<div class="tradingview-widget-copyright"><a href="https://cn.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">在TradingView上跟踪所有市场</span></a></div>-->
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+                            {
+                              "symbols": [
+                                [
+                                  "FX_IDC:AUDCNY|12M"
+                                ]
+                              ],
+                              "chartOnly": false,
+                              "width": "100%",
+                              "height": "100%",
+                              "locale": "zh_CN",
+                              "colorTheme": "dark",
+                              "autosize": true,
+                              "showVolume": false,
+                              "showMA": false,
+                              "hideDateRanges": false,
+                              "hideMarketStatus": false,
+                              "hideSymbolLogo": false,
+                              "scalePosition": "right",
+                              "scaleMode": "Normal",
+                              "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+                              "fontSize": "16",
+                              "noTimeScale": false,
+                              "valuesTracking": "1",
+                              "changeMode": "price-and-percent",
+                              "chartType": "area",
+                              "maLineColor": "#2962FF",
+                              "maLineWidth": 1,
+                              "maLength": 9,
+                              "headerFontSize": "medium",
+                              "backgroundColor": "rgba(15, 15, 15, 0)",
+                              "lineWidth": 2,
+                              "lineType": 0,
+                              "dateRanges": [
+                                "1d|1",
+                                "1m|30",
+                                "3m|60",
+                                "12m|1D",
+                                "60m|1W",
+                                "all|1M"
+                              ],
+                              "lineColor": "rgba(76, 175, 80, 1)",
+                              "topColor": "rgba(76, 175, 80, 0.6)",
+                              "bottomColor": "rgba(99, 99, 99, 0)"
+                            }</script>
+                    </div>
+                    <!-- TradingView Widget END -->
+                </div>
+            </div>
             <div class="swiper-slide" id="s3">Slide 3</div>
             <div class="swiper-slide">
 
