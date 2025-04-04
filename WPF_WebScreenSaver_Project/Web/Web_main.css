@@ -89,17 +89,19 @@ h1{
 }
 #Frame_USDCNY{
     position:absolute;
-    height:300px;
+    height:340px;
     width:95%;
     vertical-align:bottom;
     top:400px;
+    bottom:auto;
 }
 #Frame_AUDCNY {
     position: absolute;
-    height: 300px;
+    height: 340px;
     width: 95%;
     vertical-align: top;
-    bottom: 400px;
+    bottom: 380px;
+    top:auto;
 }
 .tradingview-widget-container {
     zoom: 0.6;
@@ -111,7 +113,7 @@ h1{
     left:auto;
     right:40px;
     bottom:auto;
-    top:40px;
+    top:20px;
     width:300px;
     height:300px;
 }
