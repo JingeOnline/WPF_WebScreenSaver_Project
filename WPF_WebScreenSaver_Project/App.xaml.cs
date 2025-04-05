@@ -17,9 +17,10 @@ namespace WPF_WebScreenSaver_Project
         //程序启动参数，当屏幕保护程序被设置的时候，启动设置页面；运行程序保护程序的时候，启动运行页面。
         private StartupEventArgs _startupEventArgs;
         public static bool IsSettingMode = false;
+        private NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         public App()
         {
-
+            logger.Info("Startup");
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -27,6 +28,7 @@ namespace WPF_WebScreenSaver_Project
             string[] args = e.Args;
             if (args.Length > 0)
             {
+                logger.Info("Startup - arguments: " + string.Join("", args));
                 string firstArgument = args[0].ToLower().Trim();
                 string secondArgument = null;
 
@@ -49,6 +51,10 @@ namespace WPF_WebScreenSaver_Project
                     default:
                         break;
                 }
+            }
+            else
+            {
+                logger.Info("Startup - no arguments." );
             }
             base.OnStartup(e);
         }

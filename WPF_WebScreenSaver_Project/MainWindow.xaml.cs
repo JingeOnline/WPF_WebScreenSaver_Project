@@ -28,6 +28,7 @@ namespace WPF_WebScreenSaver_Project
         [DllImport("User32.dll")]
         private static extern bool SetCursorPos(int X, int Y);
 
+        private NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         private string aud_rate;
         private string usd_rate;
         private string aud_updateTime;
@@ -42,9 +43,10 @@ namespace WPF_WebScreenSaver_Project
         public MainWindow()
         {
             InitializeComponent();
+            logger.Info(1);
             if (!App.IsSettingMode)
             {
-                this.WindowStyle = WindowStyle.None; //隐藏窗口顶部的Title bar
+                //this.WindowStyle = WindowStyle.None; //隐藏窗口顶部的Title bar
                 Cursor = Cursors.None;  //隐藏鼠标
                 SetCursorPos(4000, 2200);  //由于WebView2上隐藏鼠标不起作用，所以需要在启动时候把鼠标移到WebView2外部。
                 Topmost = true; //至于所有程序的最顶层
@@ -52,6 +54,7 @@ namespace WPF_WebScreenSaver_Project
                 this.PreviewMouseDown += MouseDown;
             }
             this.PreviewKeyDown += new KeyEventHandler(KeyboardDown);
+            logger.Info(2);
             Run();
 
         }
@@ -62,8 +65,9 @@ namespace WPF_WebScreenSaver_Project
             string web_Index_FilePath = "Web/Web_index.html";
             binPath = binPath.Replace("\\", "/");
             string fullPath = binPath + web_Index_FilePath;
-
+            logger.Info(3);
             await WebView.EnsureCoreWebView2Async();
+            logger.Info(4);
             //去除网页对快捷键的响应
             WebView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
             //去除网页对右键的响应
@@ -92,14 +96,16 @@ namespace WPF_WebScreenSaver_Project
                     #endregion
                 }
             };
-
+            logger.Info(5);
             await UpdateBocRate();
+            logger.Info(6);
         }
 
         public async Task UpdateBocRate()
         {
             while (true)
             {
+                logger.Info(7);
                 try
                 {
                     List<ExchangeDailyModel> list = await BocHelper.GetExchangeDailyModelsFromBocHomePage();
@@ -111,9 +117,11 @@ namespace WPF_WebScreenSaver_Project
                     await WebView.ExecuteScriptAsync(updateBocUsdRate + usd_rate);
                     await WebView.ExecuteScriptAsync(updateBocAudTime + aud_updateTime);
                     await WebView.ExecuteScriptAsync(updateBocUsdTime + usd_updateTime);
-                    await Task.Delay(60 * 1000);
+                    logger.Info(8);
                 }
-                catch (Exception ex) { }
+                catch (Exception ex) { logger.Info(9); logger.Error(ex); }
+                await Task.Delay(60 * 1000);
+                
             }
         }
 
