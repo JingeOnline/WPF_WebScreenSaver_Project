@@ -158,12 +158,37 @@
                     <!-- TradingView Widget END -->
                 </div>
             </div>
+            <div class="swiper-slide" id="s3">
+                <div id="Frame_WeatherRuicheng">
+                    <a class="weatherwidget-io" href="https://forecast7.com/zh/34d69110d69/ruicheng-county/" data-label_1="芮城县" data-font="微软雅黑 (Microsoft Yahei)" data-icons="Climacons Animated" data-theme="dark" data-accent="" data-textcolor="#ffffff" data-highcolor="" data-lowcolor="" data-mooncolor="#ffffff">芮城县</a>
+                    <script>
+                        !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
+                    </script>
+                </div>
+                <div id="Frame_WeatherJizhou">
+                    <a class="weatherwidget-io" href="https://forecast7.com/zh/40d05117d41/jizhou/" data-label_1="蓟州区" data-font="微软雅黑 (Microsoft Yahei)" data-icons="Climacons Animated" data-theme="dark" data-accent="" data-textcolor="#ffffff" data-highcolor="" data-lowcolor="" data-mooncolor="#ffffff">蓟州区</a>
+                    <script>
+                        !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
+                    </script>
+                </div>
+                <div id="Frame_ClockBeijing">
+                    <script src="https://cdn.logwork.com/widget/text.js"></script>
+                    <a href="https://logwork.com/current-time-in-beijing-china" class="clock-widget-text" data-timezone="Asia/Harbin" data-language="en" data-textcolor="#ffffff" data-background="#000000" data-digitscolor="#ffffff">北京</a>
+                </div>
+                <div id="Frame_ClockAct">
+                    <script src="https://cdn.logwork.com/widget/text.js"></script>
+                    <a href="https://logwork.com/current-time-in-canberra-australia-australian-capital-territory" class="clock-widget-text" data-timezone="Australia/Sydney" data-language="en" data-textcolor="#ffffff" data-background="#000000" data-digitscolor="#ffffff">堪培拉</a>
+                </div>
+            </div>
+            <!--<div class="swiper-slide" id="s4" >
+
+            </div>-->
             <!--<div class="swiper-slide" id="s3" style="background-color:palevioletred">Slide 3</div>
-            <div class="swiper-slide" style="background-color:cadetblue">  </div>
-            <div class="swiper-slide" id="s3" style="background-color:cornflowerblue">Slide 3</div>
-            <div class="swiper-slide" style="background-color:gold">  </div>
-            <div class="swiper-slide" id="s3" style="background-color:floralwhite">Slide 3</div>
-            <div class="swiper-slide" style="background-color:fuchsia">  </div>-->
+    <div class="swiper-slide" style="background-color:cadetblue">  </div>
+    <div class="swiper-slide" id="s3" style="background-color:cornflowerblue">Slide 3</div>
+    <div class="swiper-slide" style="background-color:gold">  </div>
+    <div class="swiper-slide" id="s3" style="background-color:floralwhite">Slide 3</div>
+    <div class="swiper-slide" style="background-color:fuchsia">  </div>-->
         </div>
         <div class="swiper-button-next setting-hide"></div>
         <div class="swiper-button-prev setting-hide"></div>
@@ -183,45 +208,9 @@
         keyboard: {
             enabled: true,
         },
-        //pagination: {
-        //    el: ".swiper-pagination",
-        //    clickable: true,
-        //    renderBullet: function (index, className) {
-        //        return '<span class="' + className + '">' + (index + 1) + "</span>";
-        //    },
-        //},
-        //effect: "creative",
-        //creativeEffect: {
-        //    prev: {
-        //        shadow: true,
-        //        origin: "left center",
-        //        translate: ["-5%", 0, -200],
-        //        rotate: [0, 100, 0],
-        //    },
-        //    next: {
-        //        origin: "right center",
-        //        translate: ["5%", 0, -200],
-        //        rotate: [0, -100, 0],
-        //    },
-        //},
-        //creativeEffect: {
-        //    prev: {
-        //        shadow: true,
-        //        translate: [0, 0, -800],
-        //        rotate: [180, 0, 0],
-        //    },
-        //    next: {
-        //        shadow: true,
-        //        translate: [0, 0, -800],
-        //        rotate: [-180, 0, 0],
-        //    },
-        //},
-        //slidesPerView: 'auto',
-        //slidesPerGroup: 1,
         autoplay: {
             delay: 15000,
             pauseOnMouseEnter: true,
-            //reverseDirection: true,
         },
 
         //不要用loop，因为每次循环都要重新加载渲染一遍所有页面，会造成页面加载转圈，特别是当swiper-slide页面中有js代码，每次都要重新下载重新执行，非常慢。

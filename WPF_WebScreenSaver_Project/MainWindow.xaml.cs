@@ -128,18 +128,30 @@ namespace WPF_WebScreenSaver_Project
         #region 检测鼠标移动，鼠标被按下，键盘被按下
         private void KeyboardDown(object sender, KeyEventArgs e)
         {
-            if (App.IsSettingMode)
+            //允许使用键盘的左右键来导航Slider页面
+            if(e.Key==Key.Left)
             {
-                if (e.Key == Key.Escape)
+                WebView.ExecuteScriptAsync("swiper.slidePrev()");
+            }
+            else if (e.Key == Key.Right)
+            {
+                WebView.ExecuteScriptAsync("swiper.slideNext()");
+            }
+            //其他键在运行模式下全部退出程序，在设定模式下Esc键退出
+            else
+            {
+                if (App.IsSettingMode)
+                {
+                    if (e.Key == Key.Escape)
+                    {
+                        Application.Current.Shutdown();
+                    }
+                }
+                else
                 {
                     Application.Current.Shutdown();
                 }
             }
-            else
-            {
-                Application.Current.Shutdown();
-            }
-
         }
 
         int mouseMoveCount = 0;
