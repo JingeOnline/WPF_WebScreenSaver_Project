@@ -56,7 +56,17 @@ namespace WPF_WebScreenSaver_Project
             this.PreviewKeyDown += new KeyEventHandler(KeyboardDown);
             logger.Info(2);
             Run();
+            ReHideCursor();
 
+        }
+
+        public async Task ReHideCursor()
+        {
+            while (true)
+            {
+                await Task.Delay(30 * 1000);
+                SetCursorPos(4000, 2200);
+            }
         }
 
         public async Task Run()
@@ -163,14 +173,14 @@ namespace WPF_WebScreenSaver_Project
         /// <param name="e"></param>
         private async void Window_MouseMove(object sender, MouseEventArgs e)
         {
-            if (!App.IsSettingMode)
-            {
-                mouseMoveCount++;
-                if (mouseMoveCount > 1)
-                {
-                    Application.Current.Shutdown();
-                }
-            }
+            //if (!App.IsSettingMode)
+            //{
+            //    mouseMoveCount++;
+            //    if (mouseMoveCount > 1)
+            //    {
+            //        Application.Current.Shutdown();
+            //    }
+            //}
         }
 
         /// <summary>
