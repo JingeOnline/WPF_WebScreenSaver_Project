@@ -17,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_WebScreenSaver_Project.Helpers;
 
 namespace WPF_WebScreenSaver_Project
 {
@@ -34,16 +35,16 @@ namespace WPF_WebScreenSaver_Project
         private string aud_updateTime;
         private string usd_updateTime;
 
-        private string js1 = "var list=document.querySelectorAll('.setting-hide');list.forEach(x=>x.style.display='none');";
+        private string hideElementsInRuningMode = "var list=document.querySelectorAll('.setting-hide');list.forEach(x=>x.style.display='none');";
         private string updateBocAudRate = "document.querySelector('#div_boc_aud_rate').innerHTML=";
         private string updateBocUsdRate = "document.querySelector('#div_boc_usd_rate').innerHTML=";
         private string updateBocAudTime = "document.querySelector('#div_boc_aud_rate_time').innerHTML=";
         private string updateBocUsdTime = "document.querySelector('#div_boc_usd_rate_time').innerHTML=";
+        private string updatePetrolPrice = "document.querySelector('#h2-petrol-price').innerHTML=";
 
         public MainWindow()
         {
             InitializeComponent();
-            logger.Info(1);
             if (!App.IsSettingMode)
             {
                 //this.WindowStyle = WindowStyle.None; //隐藏窗口顶部的Title bar
@@ -54,7 +55,6 @@ namespace WPF_WebScreenSaver_Project
                 this.PreviewMouseDown += MouseDown;
             }
             this.PreviewKeyDown += new KeyEventHandler(KeyboardDown);
-            logger.Info(2);
             Run();
             ReHideCursor();
 
@@ -75,9 +75,7 @@ namespace WPF_WebScreenSaver_Project
             string web_Index_FilePath = "Web/Web_index.html";
             binPath = binPath.Replace("\\", "/");
             string fullPath = binPath + web_Index_FilePath;
-            logger.Info(3);
             await WebView.EnsureCoreWebView2Async();
-            logger.Info(4);
             //去除网页对快捷键的响应
             WebView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
             //去除网页对右键的响应
@@ -91,7 +89,7 @@ namespace WPF_WebScreenSaver_Project
                 {
                     if (!App.IsSettingMode)
                     {
-                        await ((Microsoft.Web.WebView2.Wpf.WebView2)sender).ExecuteScriptAsync(js1);
+                        await ((Microsoft.Web.WebView2.Wpf.WebView2)sender).ExecuteScriptAsync(hideElementsInRuningMode);
                     }
                     #region removed test
                     //await ((Microsoft.Web.WebView2.Wpf.WebView2)sender).ExecuteScriptAsync("document.querySelector('.swiper-slide').innerHTML='OK'");
@@ -106,16 +104,14 @@ namespace WPF_WebScreenSaver_Project
                     #endregion
                 }
             };
-            logger.Info(5);
-            await UpdateBocRate();
-            logger.Info(6);
+            UpdateBocRate();
+            UpdatePetrolPrice();
         }
 
-        public async Task UpdateBocRate()
+        private async Task UpdateBocRate()
         {
             while (true)
             {
-                logger.Info(7);
                 try
                 {
                     List<ExchangeDailyModel> list = await BocHelper.GetExchangeDailyModelsFromBocHomePage();
@@ -127,19 +123,36 @@ namespace WPF_WebScreenSaver_Project
                     await WebView.ExecuteScriptAsync(updateBocUsdRate + usd_rate);
                     await WebView.ExecuteScriptAsync(updateBocAudTime + aud_updateTime);
                     await WebView.ExecuteScriptAsync(updateBocUsdTime + usd_updateTime);
-                    logger.Info(8);
                 }
-                catch (Exception ex) { logger.Info(9); logger.Error(ex); }
+                catch (Exception ex)
+                {
+                    logger.Error(ex);
+                    await WebView.ExecuteScriptAsync(updateBocAudTime + ex.Message);
+                    await WebView.ExecuteScriptAsync(updateBocUsdTime + ex.Message);
+                }
                 await Task.Delay(60 * 1000);
-                
             }
+        }
+
+        private async Task UpdatePetrolPrice()
+        {
+            try
+            {
+                string price = await PetrolSpyHelper.GetPetrolPrice();
+                await WebView.ExecuteScriptAsync(updatePetrolPrice + "'" +price + "'");
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+            }
+
         }
 
         #region 检测鼠标移动，鼠标被按下，键盘被按下
         private void KeyboardDown(object sender, KeyEventArgs e)
         {
             //允许使用键盘的左右键来导航Slider页面
-            if(e.Key==Key.Left)
+            if (e.Key == Key.Left)
             {
                 WebView.ExecuteScriptAsync("swiper.slidePrev()");
             }

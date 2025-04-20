@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -15,6 +16,73 @@ namespace SharedLibrary.Helpers
     public class BocHelper
     {
 
+        public static async Task<List<ExchangeDailyModel>> GetExchangeDailyModelsFromBocHomePage()
+        {
+            //中国银行外汇牌价首页和第二页
+            string url1 = "https://www.boc.cn/sourcedb/whpj/";
+            string url2 = "https://www.boc.cn/sourcedb/whpj/index_1.html";
+            string html1;
+            string html2;
+            List<ExchangeDailyModel> list = new List<ExchangeDailyModel>();
+            try
+            {
+                HtmlDocument doc1 = await new HtmlWeb().LoadFromWebAsync(url1);
+                var audNode1 = doc1.DocumentNode.SelectNodes("//tr/td[1]");
+                foreach (var node in audNode1)
+                {
+                    if (node.InnerHtml == "澳大利亚元")
+                    {
+                        var nodes = node.ParentNode.Elements("td").ToList();
+                        ExchangeDailyModel audModel = new ExchangeDailyModel()
+                        {
+                            name = "AUD",
+                            xhmrj = nodes[1].InnerHtml,
+                            xcmrj = nodes[2].InnerHtml,
+                            xhmcj = nodes[3].InnerHtml,
+                            xcmcj = nodes[4].InnerHtml,
+                            zhzsj = nodes[5].InnerHtml,
+                            publishTime = nodes[6].InnerHtml,
+                        };
+                        list.Add(audModel);
+                        break;
+                    }
+                }
+                HtmlDocument doc2 = await new HtmlWeb().LoadFromWebAsync(url2);
+                var audNode2 = doc2.DocumentNode.SelectNodes("//tr/td[1]");
+                foreach (var node in audNode2)
+                {
+                    if (node.InnerHtml == "美元")
+                    {
+                        var nodes = node.ParentNode.Elements("td").ToList();
+                        ExchangeDailyModel audModel = new ExchangeDailyModel()
+                        {
+                            name = "USD",
+                            xhmrj = nodes[1].InnerHtml,
+                            xcmrj = nodes[2].InnerHtml,
+                            xhmcj = nodes[3].InnerHtml,
+                            xcmcj = nodes[4].InnerHtml,
+                            zhzsj = nodes[5].InnerHtml,
+                            publishTime = nodes[6].InnerHtml,
+                        };
+                        list.Add(audModel);
+                        break;
+                    }
+                }
+                if (list != null && list.Count != 2)
+                {
+                    throw new Exception("BOC页面爬取汇率发生异常");
+                }
+                return list;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("BOC页面爬取汇率发生异常");
+            }
+        }
+
+        //BOC页面改版了，在主页上显示各国汇率两次，美元汇率被移到了第二页
+        /*
         public static async Task<List<ExchangeDailyModel>> GetExchangeDailyModelsFromBocHomePage()
         {
             string html;
@@ -148,7 +216,7 @@ namespace SharedLibrary.Helpers
                 throw new Exception("BOC网页爬虫获取当前汇率时发生异常", ex);
             }
         }
-
+        */
 
     }
 }
