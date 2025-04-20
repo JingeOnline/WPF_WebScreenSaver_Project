@@ -45,6 +45,7 @@ namespace WPF_WebScreenSaver_Project
         public MainWindow()
         {
             InitializeComponent();
+            logger.Info("初始化主窗口完成");
             if (!App.IsSettingMode)
             {
                 //this.WindowStyle = WindowStyle.None; //隐藏窗口顶部的Title bar

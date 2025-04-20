@@ -21,6 +21,7 @@ namespace WPF_WebScreenSaver_Project
         public App()
         {
             logger.Info("Startup");
+            this.Dispatcher.UnhandledException += OnDispatcherUnhandledException;
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -45,7 +46,8 @@ namespace WPF_WebScreenSaver_Project
                         IsSettingMode = true;
                         break;
                     case "/p":  // Preview mode
-                        throw new NotImplementedException();
+                        //throw new NotImplementedException();
+                        break;
                     case "/s":  // Full-screen mode
                         break;
                     default:
@@ -57,6 +59,11 @@ namespace WPF_WebScreenSaver_Project
                 logger.Info("Startup - no arguments." );
             }
             base.OnStartup(e);
+        }
+        void OnDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            logger.Error(e.Exception);
+            logger.Error("程序异常退出");
         }
     }
 }
