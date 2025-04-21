@@ -22,7 +22,10 @@ namespace WPF_WebScreenSaver_Project
         {
             logger.Info("Startup");
             this.Dispatcher.UnhandledException += OnDispatcherUnhandledException;
+            this.Exit += OnExit;
         }
+
+
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -44,19 +47,25 @@ namespace WPF_WebScreenSaver_Project
                 {
                     case "/c":  // Configuration mode
                         IsSettingMode = true;
+                        this.StartupUri=new Uri("MainWindow.xaml",UriKind.Relative);
                         break;
                     case "/p":  // Preview mode
                         //throw new NotImplementedException();
+                        Shutdown();
+                        return;
                         break;
                     case "/s":  // Full-screen mode
+                        this.StartupUri = new Uri("MainWindow.xaml", UriKind.Relative);
                         break;
                     default:
+                        this.StartupUri = new Uri("MainWindow.xaml", UriKind.Relative);
                         break;
                 }
             }
             else
             {
                 logger.Info("Startup - no arguments." );
+                this.StartupUri = new Uri("MainWindow.xaml", UriKind.Relative);
             }
             base.OnStartup(e);
         }
@@ -64,6 +73,10 @@ namespace WPF_WebScreenSaver_Project
         {
             logger.Error(e.Exception);
             logger.Error("程序异常退出");
+        }
+        private void OnExit(object sender, ExitEventArgs e)
+        {
+            logger.Info("程序正常退出");
         }
     }
 }
