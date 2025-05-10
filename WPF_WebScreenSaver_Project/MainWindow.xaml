@@ -6,11 +6,14 @@
         xmlns:local="clr-namespace:WPF_WebScreenSaver_Project"
         xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         mc:Ignorable="d" WindowState="Maximized" WindowStyle="None"
-        Title="MainWindow" Height="450" Width="800" MouseMove="Window_MouseMove">
+        Title="MainWindow" Height="450" Width="800" MouseMove="Window_MouseMove" AllowsTransparency="True">
+    <!--这里添加AllowsTransparency="True"，是为了解决程序启动后闪烁白屏画面的问题-->
+    
     <Grid Background="Black">
         <!--这里留了1像素的边距，否则当WebView2占据满屏幕的时候，无法触发窗口的MouseMove和MouseDown事件-->
         <wv2:WebView2 x:Name="WebView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                      Margin="1" ContentLoading="WebView_ContentLoading" Loaded="WebView_Loaded">
+                      Margin="1">
+            <!--ContentLoading="WebView_ContentLoading" Loaded="WebView_Loaded"-->
             <!--修改程序运行时User Data Folder储存的位置-->
             <!--<wv2:WebView2.CreationProperties>
                 <wv2:CoreWebView2CreationProperties UserDataFolder="C:\JingeTest\Webview2_User_Data_Folder"/>

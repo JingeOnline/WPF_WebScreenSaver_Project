@@ -44,6 +44,7 @@ namespace WPF_WebScreenSaver_Project
 
         public MainWindow()
         {
+
             try
             {
                 InitializeComponent();
@@ -85,6 +86,7 @@ namespace WPF_WebScreenSaver_Project
                 string web_Index_FilePath = "Web/Web_index.html";
                 binPath = binPath.Replace("\\", "/");
                 string fullPath = binPath + web_Index_FilePath;
+                WebView.DefaultBackgroundColor = System.Drawing.Color.Black;
                 await WebView.EnsureCoreWebView2Async();
                 //去除网页对快捷键的响应
                 WebView.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
@@ -102,22 +104,6 @@ namespace WPF_WebScreenSaver_Project
                         {
                             await ((Microsoft.Web.WebView2.Wpf.WebView2)sender).ExecuteScriptAsync(hideElementsInRuningMode);
                         }
-                        #region removed test
-                        //await ((Microsoft.Web.WebView2.Wpf.WebView2)sender).ExecuteScriptAsync("document.querySelector('.swiper-slide').innerHTML='OK'");
-                        //while (true)
-                        //{
-                        //    await Task.Delay(1000);
-                        //    await ((Microsoft.Web.WebView2.Wpf.WebView2)sender).ExecuteScriptAsync("document.querySelector('#s1').style.backgroundColor ='aquamarine'");
-                        //    await Task.Delay(1000);
-                        //    await ((Microsoft.Web.WebView2.Wpf.WebView2)sender).ExecuteScriptAsync("document.querySelector('#s1').style.backgroundColor ='bisque'");
-
-                        //}
-                        #endregion
-                        //if(WebView.Visibility!=Visibility.Visible)
-                        //{
-                        //    WebView.Visibility = Visibility.Visible;
-                        //}
-                        //WebView.UpdateWindowPos();
                     }
                 };
                 UpdateBocRate();
@@ -126,6 +112,8 @@ namespace WPF_WebScreenSaver_Project
             catch (Exception ex)
             {
                 logger.Error(ex,"run()方法中发生的异常->");
+                //await Task.Delay(1000);
+                //await InitializeWebView2Async();
             }
         }
 
@@ -229,14 +217,14 @@ namespace WPF_WebScreenSaver_Project
         }
         #endregion
 
-        private void WebView_ContentLoading(object sender, Microsoft.Web.WebView2.Core.CoreWebView2ContentLoadingEventArgs e)
-        {
-            logger.Info("Loading");
-        }
+        //private void WebView_ContentLoading(object sender, Microsoft.Web.WebView2.Core.CoreWebView2ContentLoadingEventArgs e)
+        //{
+        //    logger.Info("Loading");
+        //}
 
-        private void WebView_Loaded(object sender, RoutedEventArgs e)
-        {
-            logger.Info("Loaded");
-        }
+        //private void WebView_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    logger.Info("Loaded");
+        //}
     }
 }
